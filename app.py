@@ -108,19 +108,17 @@ def init_products():
 
 
 app = create_app('DevelopmentConfig')
+# with app.app_context():
+#         db.create_all()
+
+# if __name__ == '__main__':
 with app.app_context():
-        db.create_all()
+    db.drop_all()
+    db.create_all()
+    init_customers()
+    init_customerAccounts_info_data()
+    init_roles_data()
+    init_roles_customers_data()
+    init_products()
 
-app.run(debug=True)
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        init_customers()
-        init_customerAccounts_info_data()
-        init_roles_data()
-        init_roles_customers_data()
-        init_products()
-
-    app.run(debug=True)
+    # app.run(debug=False)
