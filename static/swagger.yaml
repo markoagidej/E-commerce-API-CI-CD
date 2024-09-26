@@ -220,60 +220,6 @@ paths:
                 message: "Something unexpected happened with the server. Try again later or contact an admin"
         security:
           - bearerAuth: []
-  # /employees:
-  #   post:
-  #     tags:
-  #       - employees
-  #     summary: "Create Employee"
-  #     description: "Endpoint to create a new Employee"
-  #     parameters:
-  #       - in: "body"
-  #         name: "body"
-  #         description: "New Employee data"
-  #         required: true
-  #         schema:
-  #           $ref: "#/definitions/EmployeeData"
-  #     responses:
-  #       200:
-  #         description: "Employee created successfully"
-  #         schema:
-  #           $ref: "#/definitions/Employee"
-  #       400:
-  #         description: "Bad Request"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Invalid Data"
-  #       500:
-  #         description: "Error with server"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Something unexpected happened with the server. Try again later or contact an admin"
-  #   get:
-  #     tags:
-  #       - employees
-  #     summary: "Get all Employee"
-  #     description: "Endpoint to view all Employee"
-  #     responses:
-  #       200:
-  #         description: "Successfully retreived all employees"
-  #         schema:
-  #           type: "array"
-  #           items:
-  #             $ref: "#/definitions/Employee"
-  #       500:
-  #         description: "Error with server"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Something unexpected happened with the server. Try again later or contact an admin"
   /orders:
     post:
       tags:
@@ -622,60 +568,6 @@ paths:
             application/json:
               status: "error"
               message: "Something unexpected happened with the server. Try again later or contact an admin"
-  # /productions:
-  #   post:
-  #     tags:
-  #       - productions
-  #     summary: "Create Production"
-  #     description: "Endpoint to create a new Production"
-  #     parameters:
-  #       - in: "body"
-  #         name: "body"
-  #         description: "New Production data"
-  #         required: true
-  #         schema:
-  #           $ref: "#/definitions/ProductionData"
-  #     responses:
-  #       200:
-  #         description: "Production created successfully"
-  #         schema:
-  #           $ref: "#/definitions/Production"
-  #       400:
-  #         description: "Bad Request"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Invalid Data"
-  #       500:
-  #         description: "Error with server"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Something unexpected happened with the server. Try again later or contact an admin"
-  #   get:
-  #     tags:
-  #       - productions
-  #     summary: "Get all Productions"
-  #     description: "Endpoint to view all Productions"
-  #     responses:
-  #       200:
-  #         description: "Successfully retreived all productions"
-  #         schema:
-  #           type: "array"
-  #           items:
-  #             $ref: "#/definitions/Production"
-  #       500:
-  #         description: "Error with server"
-  #         schema:
-  #           $ref: "#/definitions/Error"
-  #         examples:
-  #           application/json:
-  #             status: "error"
-  #             message: "Something unexpected happened with the server. Try again later or contact an admin"
 definitions: 
   Customer:
     type: "object"
@@ -714,35 +606,6 @@ definitions:
       - "name"
       - "email"
       - "phone"
-  # Employee:
-  #   type: "object"
-  #   properties:
-  #     name:
-  #       type: "string"
-  #       description: "Employee name"
-  #     position:
-  #       type: "string"
-  #       description: "Employee position"
-  #     id:
-  #       type: "integer"
-  #       format: "int64"
-  #       description: "Employee's unique ID"
-  #   required:
-  #     - "id"
-  #     - "name"
-  #     - "position"
-  # EmployeeData:
-  #   type: "object"
-  #   properties:
-  #     name:
-  #       type: "string"
-  #       description: "Employee name"
-  #     position:
-  #       type: "string"
-  #       description: "Employee position"
-  #   required:
-  #     - "name"
-  #     - "position"
   Order:
     type: "object"
     properties:
@@ -902,7 +765,7 @@ definitions:
       - "username"
       - "password"
       - "role"
-  CustomerData:
+  CustomerAccountData:
     type: "object"
     properties:
       username:

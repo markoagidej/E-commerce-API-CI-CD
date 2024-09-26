@@ -2,3 +2,4 @@ cicd_venv/
 my_password.py
 models.py
 .env
+api_key.txt
