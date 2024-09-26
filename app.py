@@ -37,6 +37,12 @@ def create_app(config_name):
 
     return app
 
+@app.route("/")
+def home():
+    for rule in app.url_map.iter_rules():
+        print(f"Endpoint: {rule.endpoint}, URL: {rule}, methods: {rule.methods}")
+    return "Home page!"
+
 def blueprint_config(app):
     app.register_blueprint(customer_blueprint, url_prefix='/customers')
     app.register_blueprint(employee_blueprint, url_prefix='/employees')
@@ -100,12 +106,10 @@ def init_products():
             ]
             session.add_all(products)
 
-if __name__ == '__main__':
-    app = create_app('DevelopmentConfig')
 
-    blueprint_config(app)
-
-    with app.app_context():
+app = create_app('DevelopmentConfig')
+blueprint_config(app)
+with app.app_context():
         db.drop_all()
         db.create_all()
         init_customers()
@@ -114,4 +118,19 @@ if __name__ == '__main__':
         init_roles_customers_data()
         init_products()
 
-    app.run(debug=True)
+app.run(debug=True)
+
+# if __name__ == '__main__':
+
+#     blueprint_config(app)
+
+#     with app.app_context():
+#         db.drop_all()
+#         db.create_all()
+#         init_customers()
+#         init_customerAccounts_info_data()
+#         init_roles_data()
+#         init_roles_customers_data()
+#         init_products()
+
+#     app.run(debug=True)
