@@ -159,40 +159,43 @@ class TestAllEndpoints(unittest.TestCase):
         response = orderService.save({"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price, "date_placed": mock_order.date_placed})
         self.assertEqual({"customer_id": response.customer_id, "product_id": response.product_id, "quantity": response.quantity, "total_price": response.total_price, "date_placed": response.date_placed}, {"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price, "date_placed": mock_order.date_placed})
 
-    # # Adds another order
-    # # This should pass not equals because another order should already be in the mock db, thus the new entry id is 2 not 1 (file runs tests alphabetically)
-    # def test_11_order_2_save_fail(self):
-    #     mock_order = MagicMock()
-    #     mock_order.customer_id = 1
-    #     mock_order.product_id = 1
-    #     mock_order.quantity = 5
-    #     mock_order.total_price = 10
-    #     mock_order.id = 1
+    # Adds another order
+    # This should pass not equals because another order should already be in the mock db, thus the new entry id is 2 not 1 (file runs tests alphabetically)
+    def test_11_order_2_save_fail(self):
+        mock_order = MagicMock()
+        mock_order.customer_id = 1
+        mock_order.product_id = 1
+        mock_order.quantity = 5
+        mock_order.total_price = 10
+        mock_order.id = 1
+        mock_order.date_placed = date.today()
 
-    #     response = orderService.save({"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price})
-    #     self.assertNotEqual({"customer_id": response.customer_id, "product_id": response.product_id, "quantity": response.quantity, "total_price": response.total_price, "id": response.id}, {"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price, "id": mock_order.id})
+        response = orderService.save({"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price, "date_placed": mock_order.date_placed})
+        self.assertNotEqual({"customer_id": response.customer_id, "product_id": response.product_id, "quantity": response.quantity, "total_price": response.total_price, "id": response.id, "date_placed": response.date_placed}, {"customer_id": mock_order.customer_id, "product_id": mock_order.product_id, "quantity": mock_order.quantity, "total_price": mock_order.total_price, "id": mock_order.id, "date_placed": mock_order.date_placed})
 
-    # # Test that the 2 added test orders were added correctly and have expected values
-    # def test_12_order_3_get(self):
-    #     mock_data = [
-    #         {
-    #             "id": 1,
-    #             "quantity": 5,
-    #             "customer_id": 1,
-    #             "product_id": 1,
-    #             "total_price": 10
-    #          },
-    #         {
-    #             "id": 2,
-    #             "quantity": 5,
-    #             "customer_id": 1,
-    #             "product_id": 1,
-    #             "total_price": 10
-    #          }
-    #     ]
+    # Test that the 2 added test orders were added correctly and have expected values
+    def test_12_order_3_get(self):
+        mock_data = [
+            {
+                "id": 1,
+                "quantity": 5,
+                "customer_id": 1,
+                "product_id": 1,
+                "total_price": 10,
+                "date_placed": date.today()
+             },
+            {
+                "id": 2,
+                "quantity": 5,
+                "customer_id": 1,
+                "product_id": 1,
+                "total_price": 10,
+                "date_placed": date.today()
+             }
+        ]
 
-    #     response = orderService.getAll()
-    #     self.assertEqual(mock_data, [{"id": response[0].id, "quantity": response[0].quantity, "customer_id": response[0].customer_id, "product_id": response[0].product_id, "total_price": response[0].total_price}, {"id": response[1].id, "quantity": response[1].quantity, "customer_id": response[1].customer_id, "product_id": response[1].product_id, "total_price": response[1].total_price}])
+        response = orderService.getAll()
+        self.assertEqual(mock_data, [{"id": response[0].id, "quantity": response[0].quantity, "customer_id": response[0].customer_id, "product_id": response[0].product_id, "total_price": response[0].total_price, "date_placed": response[0].date_placed}, {"id": response[1].id, "quantity": response[1].quantity, "customer_id": response[1].customer_id, "product_id": response[1].product_id, "total_price": response[1].total_price, "date_placed": response[1].date_placed}])
 
     # # Add a production
     # def test_13_production_1_save_pass(self):
