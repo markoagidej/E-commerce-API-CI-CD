@@ -112,10 +112,10 @@ def home():
     return "Home page!"
 
 with app.app_context():
-    # db.drop_all()
+    db.drop_all()
     db.create_all()
-    # init_customers()
-    # init_customerAccounts_info_data()
-    # init_roles_data()
-    # init_roles_customers_data()
-    # init_products()
+    init_customers()
+    init_customerAccounts_info_data()
+    init_roles_data()
+    init_roles_customers_data()
+    init_products()
