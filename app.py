@@ -104,8 +104,8 @@ def init_products():
 
 
 app = create_app('DevelopmentConfig')
-for rule in app.url_map.iter_rules():
-    print(f"Endpoint: {rule.endpoint}, URL: {rule}, methods: {rule.methods}")
+# for rule in app.url_map.iter_rules():
+#     print(f"Endpoint: {rule.endpoint}, URL: {rule}, methods: {rule.methods}")
 
 @app.route("/")
 def home():
@@ -114,8 +114,8 @@ def home():
 with app.app_context():
     db.drop_all()
     db.create_all()
-    init_customers()
-    init_customerAccounts_info_data()
-    init_roles_data()
-    init_roles_customers_data()
-    init_products()
+    # init_customers()
+    # init_customerAccounts_info_data()
+    # init_roles_data()
+    # init_roles_customers_data()
+    # init_products()
