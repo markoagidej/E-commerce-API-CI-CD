@@ -17,8 +17,8 @@ class TestAllEndpoints(unittest.TestCase):
         cls.app_context.push()
         cls.client = cls.app.test_client()
 
-        with cls.app.app_context():
-            db.create_all()
+        # with cls.app.app_context():
+        #     db.create_all()
 
     @classmethod
     def tearDownClass(cls):

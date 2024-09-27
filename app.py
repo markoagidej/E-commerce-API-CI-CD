@@ -23,25 +23,21 @@ from flask_swagger_ui import get_swaggerui_blueprint
 SWAGGER_URL = '/api/docs'
 API_URL = '/static/swagger.yaml'
 
-app = Flask(__name__)
 
 swaggerui_blueprint = get_swaggerui_blueprint(SWAGGER_URL, API_URL, config={'app_name': "Factory Management System API"})
 
 def create_app(config_name):
 
+    app = Flask(__name__)
     app.config.from_object(f'config.{config_name}')
     db.init_app(app)
     ma.init_app(app)
     cache.init_app(app)
     limiter.init_app(app)
+    
+    blueprint_config(app)
 
     return app
-
-@app.route("/")
-def home():
-    for rule in app.url_map.iter_rules():
-        print(f"Endpoint: {rule.endpoint}, URL: {rule}, methods: {rule.methods}")
-    return "Home page!"
 
 def blueprint_config(app):
     app.register_blueprint(customer_blueprint, url_prefix='/customers')
@@ -108,17 +104,18 @@ def init_products():
 
 
 app = create_app('DevelopmentConfig')
-# with app.app_context():
-#         db.create_all()
+for rule in app.url_map.iter_rules():
+    print(f"Endpoint: {rule.endpoint}, URL: {rule}, methods: {rule.methods}")
 
-# if __name__ == '__main__':
+@app.route("/")
+def home():
+    return "Home page!"
+
 with app.app_context():
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
-    init_customers()
-    init_customerAccounts_info_data()
-    init_roles_data()
-    init_roles_customers_data()
-    init_products()
-
-    # app.run(debug=False)
+    # init_customers()
+    # init_customerAccounts_info_data()
+    # init_roles_data()
+    # init_roles_customers_data()
+    # init_products()
